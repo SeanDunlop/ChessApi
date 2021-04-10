@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApi", "ChessApi\ChessApi.csproj", "{33FFEAB6-F250-4148-8309-15158361DDE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33FFEAB6-F250-4148-8309-15158361DDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FFEAB6-F250-4148-8309-15158361DDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FFEAB6-F250-4148-8309-15158361DDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FFEAB6-F250-4148-8309-15158361DDE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {738F3BC0-25F2-4B23-9E35-A749AB44ECA0}
+	EndGlobalSection
+EndGlobal
