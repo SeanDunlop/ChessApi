@@ -8,16 +8,12 @@ using ChessApi.Database;
 using ChessApi.Models;
 namespace ChessApi.Controllers
 {
-    public class ChessController : ApiController
+    public class UserController : ApiController
     {
         DatabaseClient client;
-        public ChessController() 
+        public UserController() 
         {
             client = new DatabaseClient();
-        }
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
@@ -28,19 +24,21 @@ namespace ChessApi.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User newUser)
         {
-
+            //client makes new user
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] User updatedUser)
         {
+            //client updates a user object
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            //delete user with id from database
         }
     }
 }
