@@ -9,6 +9,7 @@ namespace ChessApi.Models
     {
         public string username { get; set; }
         public int userId { get; set; }
+        public string hashpass { get; set; }
 
         public int elo { get; set; }
 
