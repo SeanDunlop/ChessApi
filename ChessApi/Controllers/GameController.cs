@@ -39,9 +39,9 @@ namespace ChessApi.Controllers
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody] User updatedGame)
+        public void Put(int id, [FromBody] Game updatedGame)
         {
-            //client updates a user object
+            updater.updateGame(updatedGame);
         }
 
         // DELETE api/values/5
