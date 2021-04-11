@@ -164,6 +164,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\DatabaseClient.cs" />
     <Compile Include="Database\DatabaseReader.cs" />
+    <Compile Include="Database\DatabaseUpdater.cs" />
     <Compile Include="Database\DatabaseWriter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
