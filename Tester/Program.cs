@@ -1,6 +1,7 @@
 ﻿using System;
 using ChessApiTwo.Models;
 using ChessApiTwo.Database;
+using ChessApiTwo.Controllers;
 
 namespace Tester
 {
@@ -15,14 +16,15 @@ namespace Tester
             User u = reader.getUser(1);
             User u2 = reader.getUser(2);
 
-            //int gameid = w.addGame(u, u2);
+            int gameid = w.addGame(u, u2);
 
             //up.updateGame(gameid, "poggers");
 
             //var open = reader.getOpenGames();
+            GameController cont = new GameController();
 
-            int id = reader.login("testname", "testpass");
 
+            var ah = cont.GetGames();
             Console.WriteLine("stop here thanks");
         }
     }

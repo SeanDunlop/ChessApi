@@ -31,9 +31,33 @@ namespace ChessApiTwo.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<LobbyGame> GetGames()
         {
-            return reader.getOpenGames();
+            List<Game> games = reader.getOpenGames();
+            List<LobbyGame> lgs = new List<LobbyGame>();
+            foreach(Game g in games)
+            {
+                LobbyGame lg = new LobbyGame();
+                User u;
+                if(g.playerW == -1)
+                {
+                    u = reader.getUser(g.playerB);
+                    lg.gameId = g.gameId;
+                    lg.hostName = u.username;
+                    lg.hostElo = u.elo;
+                    lg.hostColor = "Black";
+                }
+                else
+                {
+                    u = reader.getUser(g.playerW);
+                    lg.gameId = g.gameId;
+                    lg.hostName = u.username;
+                    lg.hostElo = u.elo;
+                    lg.hostColor = "White";
+                }
+                lgs.Add(lg);
+            }
+            return lgs;
         }
         [Route("/")]
         [HttpGet("{id}")]

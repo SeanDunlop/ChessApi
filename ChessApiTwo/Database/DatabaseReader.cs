@@ -157,7 +157,10 @@ namespace ChessApiTwo.Database
                     g.pgn = !reader.IsDBNull(3) ? reader.GetString(3) : null;
                     g.fen = !reader.IsDBNull(4) ? reader.GetString(4) : null;
                     g.chat = !reader.IsDBNull(5) ? reader.GetString(5) : null;
-                    games.Add(g);
+                    if(reader.GetBoolean(6) == true)
+                    {
+                        games.Add(g);
+                    }
                 }
             }
             finally
