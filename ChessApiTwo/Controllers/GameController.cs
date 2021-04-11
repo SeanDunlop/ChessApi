@@ -33,7 +33,7 @@ namespace ChessApiTwo.Controllers
         {
             return reader.getOpenGames();
         }
-
+        [Route("/")]
         [HttpGet("{id}")]
         public Game GetGameById([FromRoute] int id)
         {
