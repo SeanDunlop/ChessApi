@@ -44,9 +44,19 @@ namespace ChessApiTwo.Controllers
         [HttpPost]
         public ActionResult<Game> PostGame([FromBody] Game game) 
         {
-            writer.addGame(game);
-            return CreatedAtAction(nameof(GetGameById), new {id= game.gameId }, game);
+            int newId = writer.addGame(game);
+            return CreatedAtAction(nameof(GetGameById), new {id= newId }, game);
         }
+
+        [Route("/")]
+        [HttpPut("{id}")]
+        public ActionResult<Game> UpdateGame([FromBody] Game game) 
+        {
+            //UPDATE THE GAME
+            return NoContent();
+        }
+
+        
     }
 
 }

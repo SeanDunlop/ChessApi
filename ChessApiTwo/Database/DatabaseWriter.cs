@@ -29,7 +29,8 @@ namespace ChessApiTwo.Database
             cmd = new SqlCommand(_addGame, conn);
             cmd.Parameters.AddWithValue("@w", g.playerW);
             cmd.Parameters.AddWithValue("@b", g.playerB);
-            return executeWithId(cmd);
+            int val =  executeWithId(cmd);
+            return val;
         }
 
         public int addGame(User w, User b)
@@ -109,8 +110,8 @@ namespace ChessApiTwo.Database
                 @w,
                 @b,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                ''";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '')";
 
         string _addNewGameWhite = @"
             INSERT INTO 
