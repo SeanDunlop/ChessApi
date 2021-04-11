@@ -109,8 +109,8 @@ namespace ChessApi.Database
                 @w,
                 @b,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                ''";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '')";
 
         string _addNewGameWhite = @"
             INSERT INTO 
@@ -121,8 +121,8 @@ namespace ChessApi.Database
                 @w,
                 null,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                ''";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '')";
 
         string _addNewGameBlack = @"
             INSERT INTO 
@@ -133,8 +133,8 @@ namespace ChessApi.Database
                 null,
                 @b,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                ''";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '')";
         #endregion
     }
 }
