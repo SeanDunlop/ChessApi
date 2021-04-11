@@ -39,7 +39,7 @@ namespace ChessApi.Controllers
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody] Game updatedGame)
+        public void Put([FromBody] Game updatedGame)
         {
             updater.updateGame(updatedGame);
         }

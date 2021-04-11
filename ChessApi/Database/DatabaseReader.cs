@@ -81,6 +81,7 @@ namespace ChessApi.Database
                     g.playerB = !reader.IsDBNull(2) ? reader.GetInt32(2) : -1;
                     g.pgn = !reader.IsDBNull(3) ? reader.GetString(3) : null;
                     g.fen = !reader.IsDBNull(4) ? reader.GetString(4) : null;
+                    g.chat = !reader.IsDBNull(5) ? reader.GetString(5) : null;
                     games.Add(g);
                 }
             }
@@ -107,6 +108,7 @@ namespace ChessApi.Database
                     g.playerB = !reader.IsDBNull(2) ? reader.GetInt32(2) : -1;
                     g.pgn = !reader.IsDBNull(3) ? reader.GetString(3) : null;
                     g.fen = !reader.IsDBNull(4) ? reader.GetString(4) : null;
+                    g.chat = !reader.IsDBNull(5) ? reader.GetString(5) : null;
                 }
             }
             finally

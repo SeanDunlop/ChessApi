@@ -18,12 +18,14 @@ namespace ChessApi.Database
 
         public void updateGame(Game g)
         {
-            cmd = new SqlCommand(_updateGame, conn);
+            cmd = new SqlCommand(_updateGameWChat, conn);
             try
             {
                 conn.Open();
                 cmd.Parameters.AddWithValue("@fen", g.fen);
                 cmd.Parameters.AddWithValue("@id", g.gameId);
+                cmd.Parameters.AddWithValue("@chat", g.chat);
+
                 cmd.ExecuteNonQuery();
             }
             finally
@@ -54,6 +56,15 @@ namespace ChessApi.Database
                 Games
             SET
                 FEN = @fen
+            WHERE
+                GameID = @id";
+
+        string _updateGameWChat = @"
+            UPDATE
+                Games
+            SET
+                FEN = @fen,
+                chat = @chat
             WHERE
                 GameID = @id";
         #endregion
