@@ -24,13 +24,12 @@ namespace ChessApiTwo.Controllers
             writer = new DatabaseWriter();
             updater = new DatabaseUpdater();
         }
-        /*
+
         [HttpGet]
-        [Route("/")]
-        public int Login()
+        public int Login(string username, string pass)
         {
-            return ;
+            return reader.login(username, pass);
         }
-        */
+        
     }
 }
