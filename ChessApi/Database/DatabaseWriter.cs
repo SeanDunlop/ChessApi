@@ -48,6 +48,20 @@ namespace ChessApi.Database
             return executeWithId(cmd);
         }
 
+        public int newGameWhite(int w)
+        {
+            cmd = new SqlCommand(_addNewGameWhite, conn);
+            cmd.Parameters.AddWithValue("@w", w);
+            return executeWithId(cmd);
+        }
+
+        public int newGameBlack(int b)
+        {
+            cmd = new SqlCommand(_addNewGameBlack, conn);
+            cmd.Parameters.AddWithValue("@w", b);
+            return executeWithId(cmd);
+        }
+
         public void execute(SqlCommand cmd)
         {
             try
@@ -87,14 +101,40 @@ namespace ChessApi.Database
                 1500)";
 
         string _addGame = @"
-            INSERT INTO Games
+            INSERT INTO 
+                Games
             OUTPUT
                 Inserted.GameID
             VALUES(
                 @w,
                 @b,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
+                ''";
+
+        string _addNewGameWhite = @"
+            INSERT INTO 
+                Games
+            OUTPUT
+                Inserted.GameID
+            VALUES(
+                @w,
+                null,
+                '',
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
+                ''";
+
+        string _addNewGameBlack = @"
+            INSERT INTO 
+                Games
+            OUTPUT
+                Inserted.GameID
+            VALUES(
+                null,
+                @b,
+                '',
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
+                ''";
         #endregion
     }
 }
