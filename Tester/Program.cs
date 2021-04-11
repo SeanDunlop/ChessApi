@@ -13,10 +13,13 @@ namespace Tester
             User u2 = reader.getUser(2);
 
             DatabaseWriter w = new DatabaseWriter();
-            int gameid = w.addGame(u, u2);
+            //int gameid = w.addGame(u, u2);
 
             DatabaseUpdater up = new DatabaseUpdater();
-            up.updateGame(gameid, "poggers");
+            //up.updateGame(gameid, "poggers");
+
+            var open = reader.getOpenGames();
+            Console.WriteLine(open.Count);
         }
     }
 }

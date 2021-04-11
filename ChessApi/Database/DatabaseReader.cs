@@ -118,6 +118,33 @@ namespace ChessApi.Database
             return g;
         }
 
+        public List<Game> getOpenGames()
+        {
+            var games = new List<Game>();
+            cmd = new SqlCommand(_getOpenGames, conn);
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Game g = new Game();
+                    g.gameId = !reader.IsDBNull(0) ? reader.GetInt32(0) : -1;
+                    g.playerW = !reader.IsDBNull(1) ? reader.GetInt32(1) : -1;
+                    g.playerB = !reader.IsDBNull(2) ? reader.GetInt32(2) : -1;
+                    g.pgn = !reader.IsDBNull(3) ? reader.GetString(3) : null;
+                    g.fen = !reader.IsDBNull(4) ? reader.GetString(4) : null;
+                    g.chat = !reader.IsDBNull(5) ? reader.GetString(5) : null;
+                    games.Add(g);
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return games;
+        }
+
         #region Queries
         string _getAllUsers = @"
             SELECT
@@ -146,6 +173,16 @@ namespace ChessApi.Database
                 Games
             WHERE
                 GameID = @id";
+
+        string _getOpenGames = @"
+            SELECT
+                *
+            FROM
+                Games
+            WHERE
+                black is null 
+            OR
+                white is null";
         #endregion
     }
 }
