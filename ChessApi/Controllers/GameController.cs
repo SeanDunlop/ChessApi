@@ -14,16 +14,22 @@ namespace ChessApi.Controllers
         // GET: Game
 
         DatabaseClient client;
+        DatabaseWriter writer;
+        DatabaseUpdater updater;
+        DatabaseReader reader;
         public GameController()
         {
             client = new DatabaseClient();
+            reader = new DatabaseReader();
+            writer = new DatabaseWriter();
+            updater = new DatabaseUpdater();
         }
 
         // GET api/values/5
         public Game Get(int id)
         {
             //return "value";
-            return client.getGame(id);
+            return reader.getGame(id);
         }
 
         // POST api/values
