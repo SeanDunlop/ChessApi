@@ -10,7 +10,11 @@ namespace Tester
         {
             DatabaseReader reader = new DatabaseReader();
             User u = reader.getUser(1);
-            Console.WriteLine(u.username);
+            User u2 = reader.getUser(2);
+
+            DatabaseWriter w = new DatabaseWriter();
+            w.addGame(u, u2);
+            w.addGame(u2.userId, u.userId);
         }
     }
 }
