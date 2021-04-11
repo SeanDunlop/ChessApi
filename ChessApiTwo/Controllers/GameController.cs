@@ -19,6 +19,7 @@ namespace ChessApiTwo.Controllers
         DatabaseWriter writer;
         DatabaseUpdater updater;
         DatabaseReader reader;
+        Random rand;
 
         public GameController()
         {
@@ -26,6 +27,7 @@ namespace ChessApiTwo.Controllers
             reader = new DatabaseReader();
             writer = new DatabaseWriter();
             updater = new DatabaseUpdater();
+            rand = new Random();
         }
 
         [HttpGet]
@@ -42,10 +44,21 @@ namespace ChessApiTwo.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Game> PostGame([FromBody] Game game) 
+        public ActionResult<Game> NewLobby([FromRoute] int id) 
         {
-            int newId = writer.addGame(game);
-            return CreatedAtAction(nameof(GetGameById), new {id= newId }, game);
+            int newId;
+            Game g;
+            if(rand.Next(0,1) == 1)
+            {
+                newId = writer.newGameWhite(id);
+                g = reader.getGame(newId);
+            }
+            else
+            {
+                newId = writer.newGameBlack(id);
+                g = reader.getGame(newId);
+            }
+            return g;
         }
 
         [Route("/")]
@@ -55,8 +68,5 @@ namespace ChessApiTwo.Controllers
             //UPDATE THE GAME
             return NoContent();
         }
-
-        
     }
-
 }

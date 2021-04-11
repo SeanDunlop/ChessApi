@@ -36,6 +36,7 @@ namespace ChessApi.Controllers
         public void Post([FromBody] Game newGame)
         {
             //client makes new user
+
         }
 
         // PUT api/values/5

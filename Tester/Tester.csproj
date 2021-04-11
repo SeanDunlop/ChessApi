@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChessApi\ChessApi.csproj" />
+    <ProjectReference Include="..\ChessApiTwo\ChessApiTwo.csproj" />
   </ItemGroup>
 
 </Project>

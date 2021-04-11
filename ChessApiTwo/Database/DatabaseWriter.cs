@@ -11,9 +11,11 @@ namespace ChessApiTwo.Database
     {
         private SqlCommand cmd;
         private SqlConnection conn;
+        private Random rand;
         public DatabaseWriter()
         {
             conn = new SqlConnection("Server=tcp:chess-server.database.windows.net,1433;Initial Catalog=chess-db;Persist Security Info=False;User ID=chessman;Password=ch3ss1sn3@t;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            rand = new Random();
         }
 
         public int addUser(User u)

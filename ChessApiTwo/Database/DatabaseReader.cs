@@ -41,6 +41,28 @@ namespace ChessApiTwo.Database
             return users;
         }
 
+        public int login(string name, string pass)
+        {
+            cmd = new SqlCommand(_login, conn);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@pass", pass);
+            try
+            {
+                conn.Open();
+                
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    return !reader.IsDBNull(0) ? reader.GetInt32(0) : -1;
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return -1;
+        }
+
         public User getUser(int id)
         {
             User u = new User();
@@ -146,6 +168,16 @@ namespace ChessApiTwo.Database
         }
 
         #region Queries
+        string _login = @"
+            SELECT
+                *
+            FROM
+                Users
+            WHERE
+                Username = @name
+            AND
+                Hashpass = @pass";
+
         string _getAllUsers = @"
             SELECT
                 *
