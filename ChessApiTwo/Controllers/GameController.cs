@@ -111,12 +111,27 @@ namespace ChessApiTwo.Controllers
             return g;
         }
 
-        [Route("/")]
-        [HttpPut("{id}")]
-        public ActionResult<Game> UpdateGame([FromBody] Game game) 
+        [Route("/chatSend")]
+        [HttpGet]
+        public void sendChat(int id, string chat)
         {
-            //UPDATE THE GAME
-            return NoContent();
+            var game = reader.getGame(id);
+            game.chat = chat;
+            updater.updateGame(game);
+        }
+
+        [Route("/move")]
+        [HttpGet]
+        public void UpdateGame(int id, string fen) 
+        {
+            updater.updateGame(id, fen);
+        }
+
+        [Route("/update")]
+        [HttpGet]
+        public ActionResult<Game> getUpdate(int id)
+        {
+            return reader.getGame(id);
         }
     }
 }
