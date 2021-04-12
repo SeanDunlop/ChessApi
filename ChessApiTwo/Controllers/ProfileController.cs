@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChessApiTwo.Database;
+using ChessApiTwo.Models;
 
 namespace ChessApiTwo.Controllers
 {
@@ -30,6 +31,21 @@ namespace ChessApiTwo.Controllers
         {
             return reader.login(username, pass);
         }
+
+        [Route("/getProfile")]
+        [HttpGet]
+        public ActionResult<User> getProfile(int id)
+        {
+            return reader.getUser(id);
+        }
+
+        [Route("/updateProfile")]
+        [HttpGet]
+        public void setProfile(User u)
+        {
+            updater.updateUser(u);
+        }
+
         
     }
 }

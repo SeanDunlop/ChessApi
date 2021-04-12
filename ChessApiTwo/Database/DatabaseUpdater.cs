@@ -85,6 +85,14 @@ namespace ChessApiTwo.Database
             }
         }
 
+        public void updateUser(User u)
+        {
+            cmd = new SqlCommand(_updateUser, conn);
+            cmd.Parameters.AddWithValue("@id", u.userId);
+            cmd.Parameters.AddWithValue("@name", u.username);
+            execute(cmd);
+        }
+
         #region Queries
         string _stopGame = @"
             UPDATE
@@ -126,6 +134,14 @@ namespace ChessApiTwo.Database
                 chat = @chat
             WHERE
                 GameID = @id";
+
+        string _updateUser = @"
+            UPDATE
+                Users
+            SET
+                Username = @name
+            WHERE
+                UserID = @id";
         #endregion
     }
 }

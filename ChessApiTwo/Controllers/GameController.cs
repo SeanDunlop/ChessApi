@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChessApiTwo.Database;
 using ChessApiTwo.Models;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace ChessApiTwo.Controllers
 {
@@ -20,6 +23,7 @@ namespace ChessApiTwo.Controllers
         DatabaseUpdater updater;
         DatabaseReader reader;
         Random rand;
+        HttpClient httpclient = new HttpClient();
 
         public GameController()
         {
@@ -73,7 +77,7 @@ namespace ChessApiTwo.Controllers
         {
             int newId;
             Game g;
-            if(rand.Next(0,1) == 1)
+            if(rand.NextDouble() > 0.5)
             {
                 newId = writer.newGameWhite(id);
                 g = reader.getGame(newId);
@@ -124,7 +128,30 @@ namespace ChessApiTwo.Controllers
         [HttpGet]
         public void UpdateGame(int id, string fen) 
         {
-            updater.updateGame(id, fen);
+            Game g = reader.getGame(id);
+            string format = fen.Replace("/", "%2F");
+            format = format.Replace(" ", "%20");
+            
+            if (g.playerB == 5 || g.playerW == 5)
+            {
+                var response = httpclient.GetStringAsync("http://e05a8388588c.ngrok.io/FEN?FEN=" + format);
+                Thread.Sleep(1000);
+                string newFen = response.Result;
+                updater.updateGame(id, newFen);
+            }
+            else
+            {
+                updater.updateGame(id, fen);
+            }
+            
+        }
+
+        [Route("/bot")]
+        [HttpGet]
+        public ActionResult<Game> botGame(int id)
+        {
+            ActionResult<Game> g = NewLobby(id);
+            return JoinGame(g.Value.gameId, 5);
         }
 
         [Route("/update")]
