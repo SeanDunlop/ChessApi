@@ -15,6 +15,35 @@ namespace ChessApiTwo.Database
             conn = new SqlConnection("Server=tcp:chess-server.database.windows.net,1433;Initial Catalog=chess-db;Persist Security Info=False;User ID=chessman;Password=ch3ss1sn3@t;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
+        public void execute(SqlCommand cmd)
+        {
+            try
+            {
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
+
+        public void joinGameBlack(Game g)
+        {
+            cmd = new SqlCommand(_joinGameBlack, conn);
+            cmd.Parameters.AddWithValue("@b", g.playerB);
+            cmd.Parameters.AddWithValue("id", g.gameId);
+            execute(cmd);
+        }
+
+        public void joinGameWhite(Game g)
+        {
+            cmd = new SqlCommand(_joinGameWhite, conn);
+            cmd.Parameters.AddWithValue("@w", g.playerW);
+            cmd.Parameters.AddWithValue("id", g.gameId);
+            execute(cmd);
+        }
+
         public void updateGame(Game g)
         {
             cmd = new SqlCommand(_updateGameWChat, conn);
@@ -31,6 +60,13 @@ namespace ChessApiTwo.Database
             {
                 conn.Close();
             }
+        }
+
+        public void stopGame(int id)
+        {
+            cmd = new SqlCommand(_stopGame, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            execute(cmd);
         }
 
         public void updateGame(int id, string FEN)
@@ -50,6 +86,30 @@ namespace ChessApiTwo.Database
         }
 
         #region Queries
+        string _stopGame = @"
+            UPDATE
+                Games
+            SET
+                Active = 0
+            WHERE
+                GameID = @id";
+
+        string _joinGameBlack = @"
+            UPDATE
+                Games
+            SET
+                Black = @b
+            WHERE  
+                GameID = @id";
+
+        string _joinGameWhite = @"
+            UPDATE
+                Games
+            SET
+                White = @w
+            WHERE
+                GameID = @id";
+        
         string _updateGame = @"
             UPDATE
                 Games

@@ -16,7 +16,7 @@ namespace Tester
             User u = reader.getUser(1);
             User u2 = reader.getUser(2);
 
-            int gameid = w.addGame(u, u2);
+            //int gameid = w.addGame(u, u2);
 
             //up.updateGame(gameid, "poggers");
 
@@ -24,6 +24,14 @@ namespace Tester
             GameController cont = new GameController();
 
 
+            
+
+            int hey = w.newGameBlack(2);
+
+            cont.quitGame(hey);
+
+            cont.JoinGame(hey, 1);
+            
             var ah = cont.GetGames();
             Console.WriteLine("stop here thanks");
         }

@@ -61,7 +61,7 @@ namespace ChessApiTwo.Database
         public int newGameBlack(int b)
         {
             cmd = new SqlCommand(_addNewGameBlack, conn);
-            cmd.Parameters.AddWithValue("@w", b);
+            cmd.Parameters.AddWithValue("@b", b);
             return executeWithId(cmd);
         }
 
@@ -113,7 +113,8 @@ namespace ChessApiTwo.Database
                 @b,
                 '',
                 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-                '',1)";
+                '',
+                1)";
 
         string _addNewGameWhite = @"
             INSERT INTO 
@@ -124,8 +125,9 @@ namespace ChessApiTwo.Database
                 @w,
                 null,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                '',1";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '',
+                1)";
 
         string _addNewGameBlack = @"
             INSERT INTO 
@@ -136,8 +138,9 @@ namespace ChessApiTwo.Database
                 null,
                 @b,
                 '',
-                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'),
-                '',1";
+                'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+                '',
+                1)";
         #endregion
     }
 }

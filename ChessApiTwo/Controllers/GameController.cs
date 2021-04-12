@@ -67,8 +67,9 @@ namespace ChessApiTwo.Controllers
             //return new Game {chat="Example Chat" };
         }
 
-        [HttpPost]
-        public ActionResult<Game> NewLobby([FromRoute] int id) 
+        [HttpGet]
+        [Route("/new")]
+        public ActionResult<Game> NewLobby(int id) 
         {
             int newId;
             Game g;
@@ -81,6 +82,31 @@ namespace ChessApiTwo.Controllers
             {
                 newId = writer.newGameBlack(id);
                 g = reader.getGame(newId);
+            }
+            return g;
+        }
+
+        [Route("/quit")]
+        [HttpGet]
+        public void quitGame(int gameId)
+        {
+            updater.stopGame(gameId);
+        }
+
+        [Route("/join")]
+        [HttpGet]
+        public ActionResult<Game> JoinGame(int gameId, int userId)
+        {
+            Game g = reader.getGame(gameId);
+            if (g.playerW == -1)
+            {
+                g.playerW = userId;
+                updater.joinGameWhite(g);
+            }
+            else
+            {
+                g.playerB = userId;
+                updater.joinGameBlack(g);
             }
             return g;
         }
